@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Nori</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf7f2;
+      --warm-white: #fffdf9;
+      --bark: #3d2e1e;
+      --bark-light: #6b5040;
+      --sage: #7a9e7e;
+      --sage-light: #a8c5ab;
+      --sage-pale: #edf4ee;
+      --terracotta: #c4704a;
+      --border: #e4ddd4;
+      --text-muted: #9c8c7c;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--bark); min-height: 100vh; }
+
+    /* ── NAV ── */
+    .site-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,247,242,.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-brand img { height: 36px; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-size: 14px; font-weight: 400; color: var(--text-muted); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--sage); }
+    .nav-cta {
+      background: var(--bark); color: var(--cream) !important; padding: 8px 20px;
+      border-radius: 100px; font-weight: 500 !important; transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--bark-light) !important; }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      background: var(--bark); color: var(--cream);
+      padding: 56px 24px 52px; text-align: center;
+    }
+    .page-hero .eyebrow {
+      font-size: 11px; font-weight: 500; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--sage-light); margin-bottom: 20px;
+    }
+    .page-hero h1 {
+      font-family: 'Lora', serif; font-size: clamp(28px, 4vw, 40px); font-weight: 600;
+      line-height: 1.2; margin-bottom: 12px;
+    }
+    .page-hero .updated { font-size: 13px; color: rgba(250,247,242,.55); }
+
+    /* ── DOC BODY ── */
+    .doc-wrap { max-width: 720px; margin: 0 auto; padding: 56px 24px 80px; }
+
+    .doc-section { margin-bottom: 44px; }
+    .doc-section h2 {
+      font-family: 'Lora', serif; font-size: 20px; font-weight: 600;
+      color: var(--bark); margin-bottom: 14px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .doc-section p { font-size: 14px; font-weight: 300; color: var(--bark-light); line-height: 1.8; margin-bottom: 12px; }
+    .doc-section p:last-child { margin-bottom: 0; }
+    .doc-section ul { padding-left: 20px; margin-bottom: 12px; }
+    .doc-section li { font-size: 14px; font-weight: 300; color: var(--bark-light); line-height: 1.8; margin-bottom: 6px; }
+    .doc-section strong { font-weight: 500; color: var(--bark); }
+    .doc-section a { color: var(--sage); text-decoration: none; }
+    .doc-section a:hover { text-decoration: underline; }
+
+    .highlight-box {
+      background: var(--sage-pale); border: 1px solid var(--sage-light);
+      border-radius: 12px; padding: 18px 20px; margin: 16px 0;
+      font-size: 14px; font-weight: 300; color: var(--bark-light); line-height: 1.7;
+    }
+    .highlight-box strong { color: var(--bark); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 32px 24px;
+      font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--sage); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand">
+    <img src="nori_Logo_500x500_px.png" alt="Nori" />
+  </a>
+  <div class="nav-links">
+    <a href="index.html#how">How it works</a>
+    <a href="index.html#enroll">Sign up</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="index.html#enroll" class="nav-cta">Get started →</a>
+  </div>
+</nav>
+
+<!-- ── PAGE HERO ── -->
+<div class="page-hero">
+  <div class="eyebrow">Legal</div>
+  <h1>Privacy Policy</h1>
+  <div class="updated">Last updated: April 2025</div>
+</div>
+
+<!-- ── CONTENT ── -->
+<div class="doc-wrap">
+
+  <div class="doc-section">
+    <h2>Who we are</h2>
+    <p>Nori ("Nori", "we", "our", or "us") is an AI-powered senior companion service. We place scheduled daily phone calls to enrolled seniors, analyze the conversations for wellbeing signals, and send alerts to designated family contacts when concerns are detected.</p>
+    <p>Questions? Contact us at <a href="mailto:hello@callnori.com">hello@callnori.com</a>.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>Information we collect</h2>
+    <p>We collect only what's necessary to deliver the service:</p>
+    <ul>
+      <li><strong>Senior information:</strong> Name, phone number, age, timezone, preferred call time, health notes, interests, and call style preference — provided by the enrolling family member.</li>
+      <li><strong>Family contact information:</strong> Name, mobile number, email address, and relationship to the senior.</li>
+      <li><strong>Call data:</strong> Recordings and AI-generated summaries of conversations between Nori and the senior, used solely to detect wellbeing signals and generate alerts.</li>
+      <li><strong>Consent records:</strong> Timestamps and records of consents provided at enrollment, including which alert channels were opted into.</li>
+    </ul>
+  </div>
+
+  <div class="doc-section">
+    <h2>How we use your information</h2>
+    <ul>
+      <li>To place daily check-in calls to the enrolled senior at their preferred time.</li>
+      <li>To analyze call content for mood, health, and safety signals using AI.</li>
+      <li>To send SMS, WhatsApp, or email alerts to the designated family contact based on their chosen channels.</li>
+      <li>To personalize conversations based on remembered interests, health context, and previous calls.</li>
+      <li>To improve the quality of our AI and service over time.</li>
+      <li>To communicate with you about enrollment, service updates, or support requests.</li>
+    </ul>
+  </div>
+
+  <div class="doc-section">
+    <h2>SMS and WhatsApp messaging</h2>
+    <p>By enrolling and opting into SMS or WhatsApp alerts, the family contact expressly consents to receive automated messages from Nori. Message frequency depends on call outcomes — typically 0–2 messages per day. <strong>Message and data rates may apply.</strong></p>
+    <div class="highlight-box">
+      <strong>To stop receiving SMS or WhatsApp alerts at any time:</strong> reply <strong>STOP</strong> to any Nori message. For help, reply <strong>HELP</strong> or contact us at <a href="mailto:hello@callnori.com">hello@callnori.com</a>. Opting out of alerts does not affect your parent's daily calls.
+    </div>
+    <p>Sample messages you may receive:</p>
+    <ul>
+      <li>"Your father sounded cheerful today. He mentioned he's been sleeping better this week. – Nori"</li>
+      <li>"Nori noticed your mother seemed a bit lower than usual today. You may want to give her a call. – Nori"</li>
+      <li>"We weren't able to reach your parent today. We'll try again in 30 minutes. – Nori"</li>
+    </ul>
+  </div>
+
+  <div class="doc-section">
+    <h2>Call recording and AI analysis</h2>
+    <p>Calls between Nori and enrolled seniors are recorded and analyzed by AI to generate wellbeing summaries and detect concerns. By enrolling a senior, the family contact confirms that the senior has been informed of and agreed to this recording and analysis.</p>
+    <p>Recordings are stored securely and are not shared with third parties. They are used only for the purpose described above.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>Sharing of information</h2>
+    <p><strong>We do not sell, rent, or share your personal information or opt-in data with third parties for their own marketing purposes.</strong></p>
+    <p>We may share information with:</p>
+    <ul>
+      <li><strong>Service providers</strong> who help us operate Nori (e.g. telephony infrastructure, AI processing, database hosting) — under strict agreements that prohibit them from using your data for any other purpose.</li>
+      <li><strong>Law enforcement or regulators</strong> when required by applicable law or valid legal process.</li>
+    </ul>
+  </div>
+
+  <div class="doc-section">
+    <h2>Data security</h2>
+    <p>We use industry-standard security measures including encrypted data transmission (TLS), encrypted storage, and access controls. No method of transmission over the internet is 100% secure, but we take all reasonable steps to protect your information.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>Data retention</h2>
+    <p>We retain your information for as long as your parent is enrolled in Nori. You may request deletion of your data at any time by contacting <a href="mailto:hello@callnori.com">hello@callnori.com</a>. We will respond and action your request within 30 days.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>Your rights</h2>
+    <p>You may request access to, correction of, or deletion of your personal information at any time. Contact us at <a href="mailto:hello@callnori.com">hello@callnori.com</a>.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>Changes to this policy</h2>
+    <p>We may update this Privacy Policy from time to time. We will notify enrolled users of material changes by email. Continued use of Nori after changes take effect constitutes acceptance of the updated policy.</p>
+  </div>
+
+  <div class="doc-section">
+    <h2>Contact</h2>
+    <p>Nori<br>
+    <a href="mailto:hello@callnori.com">hello@callnori.com</a></p>
+  </div>
+
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <img src="nori_Logo_500x500_px.png" alt="Nori" style="height:26px;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto;" />
+  <div style="margin-bottom:6px;">
+    <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of Service</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@callnori.com">hello@callnori.com</a>
+  </div>
+  <div>© 2025 Nori &nbsp;·&nbsp; To stop SMS alerts reply STOP &nbsp;·&nbsp; For help reply HELP</div>
+</footer>
+
+</body>
+</html>
