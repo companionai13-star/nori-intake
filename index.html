@@ -543,29 +543,37 @@
     </div>
 
     <!-- CONSENT BOXES -->
-    <div class="consent-box">
-      <input type="checkbox" id="f-consent" required />
-      <div class="consent-text">
-        <strong>Recording consent</strong><br>
-        Nori records and analyzes calls solely to monitor wellbeing and send you alerts. Recordings are never sold or shared with third parties. You can cancel enrollment at any time. See our <a href="privacy.html" style="color:var(--sage)">Privacy Policy</a> and <a href="terms.html" style="color:var(--sage)">Terms of Service</a>.
-      </div>
-    </div>
+<div class="consent-box">
+  <input type="checkbox" id="f-consent" required />
+  <div class="consent-text">
+    <strong>Recording consent</strong><br>
+    Nori records and analyzes calls solely to monitor wellbeing and send you alerts. Recordings are never sold or shared with third parties. You can cancel enrollment at any time. See our <a href="privacy.html" style="color:var(--sage)">Privacy Policy</a> and <a href="terms.html" style="color:var(--sage)">Terms of Service</a>.
+  </div>
+</div>
 
-    <div style="margin-bottom:20px;">
-      <div style="font-size:13px;font-weight:500;color:var(--bark);margin-bottom:12px;">Alert channels — select at least one <span style="color:var(--terracotta)">*</span></div>
-      <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:12px;font-size:13px;font-weight:300;color:var(--bark-light);">
-        <input type="checkbox" id="consent_sms" style="width:18px;height:18px;min-width:18px;margin-top:1px;accent-color:var(--sage);" />
-        <span>I agree to receive <strong style="font-weight:500;color:var(--bark)">SMS alerts</strong> from Nori at my mobile number above. Message and data rates may apply. Reply <strong style="font-weight:500;color:var(--bark)">STOP</strong> to opt out anytime. Reply <strong style="font-weight:500;color:var(--bark)">HELP</strong> for help. <a href="mailto:hello@callnori.com" style="color:var(--sage)">hello@callnori.com</a></span>
-      </label>
-      <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:12px;font-size:13px;font-weight:300;color:var(--bark-light);">
-        <input type="checkbox" id="consent_whatsapp" style="width:18px;height:18px;min-width:18px;margin-top:1px;accent-color:var(--sage);" />
-        <span>I agree to receive <strong style="font-weight:500;color:var(--bark)">WhatsApp alerts</strong> from Nori. Message and data rates may apply. Reply <strong style="font-weight:500;color:var(--bark)">STOP</strong> to opt out anytime.</span>
-      </label>
-      <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:13px;font-weight:300;color:var(--bark-light);">
-        <input type="checkbox" id="consent_email" style="width:18px;height:18px;min-width:18px;margin-top:1px;accent-color:var(--sage);" />
-        <span>I agree to receive <strong style="font-weight:500;color:var(--bark)">email alerts</strong> from Nori about my parent's daily check-in and any concerns detected.</span>
-      </label>
-    </div>
+<div style="margin-bottom:20px;">
+  <div style="font-size:13px;font-weight:500;color:var(--bark);margin-bottom:12px;">Alert channels — select at least one <span style="color:var(--terracotta)">*</span></div>
+
+  <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:12px;font-size:13px;font-weight:300;color:var(--bark-light);">
+    <input type="checkbox" id="consent_sms" style="width:18px;height:18px;min-width:18px;margin-top:1px;accent-color:var(--sage);" />
+    <span>I agree to receive <strong style="font-weight:500;color:var(--bark)">text messages (SMS)</strong> from Nori at the mobile number provided above. These are informational wellness alerts about my enrolled family member. Consent is not a condition of enrollment.</span>
+  </label>
+
+  <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:12px;font-size:13px;font-weight:300;color:var(--bark-light);">
+    <input type="checkbox" id="consent_whatsapp" style="width:18px;height:18px;min-width:18px;margin-top:1px;accent-color:var(--sage);" />
+    <span>I agree to receive <strong style="font-weight:500;color:var(--bark)">WhatsApp alerts</strong> from Nori. Consent is not a condition of enrollment.</span>
+  </label>
+
+  <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:16px;font-size:13px;font-weight:300;color:var(--bark-light);">
+    <input type="checkbox" id="consent_email" style="width:18px;height:18px;min-width:18px;margin-top:1px;accent-color:var(--sage);" />
+    <span>I agree to receive <strong style="font-weight:500;color:var(--bark)">email alerts</strong> from Nori about my enrolled family member's daily check-in and any concerns detected.</span>
+  </label>
+
+  <!-- SMS disclosure paragraph — required by Twilio / TCPA -->
+  <div style="font-size:12px;color:var(--text-muted);line-height:1.6;padding:12px 14px;background:var(--sage-pale);border-radius:8px;margin-top:4px;">
+    By providing your phone number and checking the SMS box above, you expressly consent to receive informational text messages from Nori about your enrolled family member. Message frequency varies (typically 0–2 messages per day). Message and data rates may apply. Reply <strong>STOP</strong> to cancel at any time. Reply <strong>HELP</strong> for assistance. For support: <a href="mailto:hello@callnori.com" style="color:var(--sage)">hello@callnori.com</a>. Consent is not a condition of enrollment. See our <a href="privacy.html" style="color:var(--sage)">Privacy Policy</a>.
+  </div>
+</div>
 
     <div id="form-toast" class="form-toast"></div>
 
