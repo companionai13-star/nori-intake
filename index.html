@@ -266,9 +266,10 @@
 
 <!-- ── NAV ── -->
 <nav class="site-nav">
-  <a href="index.html" class="nav-brand">
+<a href="index.html" class="nav-brand">
     <img src="nori_Logo_500x500_px.png" alt="Nori" />
-  </a>
+    <span style="font-family:'Lora',serif;font-size:18px;font-weight:600;color:var(--bark);letter-spacing:-0.3px;">Nori</span>
+</a>
   <div class="nav-links">
     <a href="#how">How it works</a>
     <a href="#enroll">Sign up</a>
@@ -440,6 +441,7 @@
 <section class="form-section" id="enroll">
   <div class="form-intro">
     <h2>Enroll your parent in Nori</h2>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:-8px;margin-bottom:4px;">By <strong>Nori</strong> · callnori.com</p>
     <p>Takes about three minutes. Nori handles everything after that — the calls, the listening, the alerts to you.</p>
     <span class="free-badge">✦ Completely free during our pilot — no credit card</span>
   </div>
@@ -552,7 +554,7 @@
 </div>
 
 <div style="margin-bottom:20px;">
-  <div style="font-size:13px;font-weight:500;color:var(--bark);margin-bottom:12px;">Alert channels — select at least one <span style="color:var(--terracotta)">*</span></div>
+  <div style="font-size:13px;font-weight:500;color:var(--bark);margin-bottom:12px;">Alert channels <span style="color:var(--text-muted);font-weight:300;">(select at least one — SMS is optional)</span>
 
   <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;margin-bottom:12px;font-size:13px;font-weight:300;color:var(--bark-light);">
     <input type="checkbox" id="consent_sms" style="width:18px;height:18px;min-width:18px;margin-top:1px;accent-color:var(--sage);" />
@@ -641,8 +643,8 @@
     var emailCb    = document.getElementById('consent_email').checked;
 
     if (!smsCb && !waCb && !emailCb) {
-      showToast('Please select at least one alert channel (SMS, WhatsApp, or email)', 'error');
-      return;
+    showToast('Please select at least one alert channel (SMS, WhatsApp, or email) — or email only is fine', 'error');
+    return;
     }
 
     btn.disabled = true; btn.textContent = 'Enrolling…';
