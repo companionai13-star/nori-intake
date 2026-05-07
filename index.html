@@ -639,11 +639,11 @@
     }
 
     var smsCb      = document.getElementById('consent_sms').checked;
-    var waCb       = document.getElementById('consent_whatsapp').checked;
+    /*var waCb       = document.getElementById('consent_whatsapp').checked;*/
     var emailCb    = document.getElementById('consent_email').checked;
 
     if (!smsCb && !waCb && !emailCb) {
-    showToast('Please select at least one alert channel (SMS, WhatsApp, or email) — or email only is fine', 'error');
+    showToast('Please select at least one alert channel (SMS, or email) — or email only is fine', 'error');
     return;
     }
 
