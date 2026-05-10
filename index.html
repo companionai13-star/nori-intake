@@ -95,7 +95,70 @@
       display: block; width: 100%; max-width: 860px; max-height: 460px;
       object-fit: cover; object-position: center 30%; border-radius: 16px; margin: 0 auto;
     }
+/* ──Added New SECTION 2: PROBLEM — SPECIFIC ── */
+    .problem {
+      background: var(--cream);
+      padding: 80px 24px;
+    }
+    .problem-inner { max-width: 960px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--sage);
+      display: block; text-align: center; margin-bottom: 16px;
+    }
+    .problem h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 600; text-align: center; color: var(--bark);
+      margin-bottom: 16px; line-height: 1.25; max-width: 680px; margin-left: auto; margin-right: auto;
+    }
+    .problem-intro {
+      font-size: 16px; font-weight: 300; color: var(--bark-light);
+      text-align: center; line-height: 1.7; max-width: 560px;
+      margin: 0 auto 56px;
+    }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media(max-width:720px) { .problem-grid { grid-template-columns: 1fr; } }
+    @media(min-width:560px) and (max-width:720px) { .problem-grid { grid-template-columns: 1fr 1fr; } }
+    .problem-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+      position: relative; overflow: hidden;
+    }
+    .problem-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+    }
+    .problem-card--mood::before   { background: var(--terracotta); }
+    .problem-card--isolation::before { background: var(--sage); }
+    .problem-card--cognitive::before { background: #8B7DC8; }
+    .problem-card__icon { font-size: 28px; margin-bottom: 16px; }
+    .problem-card__title { font-family: 'Lora', serif; font-size: 17px; font-weight: 600; color: var(--bark); margin-bottom: 10px; line-height: 1.3; }
+    .problem-card__body { font-size: 13px; font-weight: 300; color: var(--bark-light); line-height: 1.7; margin-bottom: 16px; }
+    .problem-card__signal {
+      font-size: 12px; font-weight: 500; color: var(--text-muted);
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 12px; line-height: 1.5;
+    }
+    .problem-card__signal strong { color: var(--bark); font-weight: 500; display: block; margin-bottom: 2px; }
 
+    .pull-quote {
+      border-left: 3px solid var(--terracotta);
+      background: var(--terracotta-light);
+      border-radius: 0 14px 14px 0;
+      padding: 24px 28px; margin: 56px 0 0;
+    }
+    .pull-quote p {
+      font-family: 'Lora', serif; font-style: italic;
+      font-size: clamp(17px, 2.5vw, 21px);
+      color: var(--terracotta); line-height: 1.6;
+    }
+    /*-Added new end-*/
     /* ── DIFFERENCE ── */
     .diff-section { background: var(--cream); padding: 64px 24px; }
     .diff-section .inner { max-width: 860px; margin: 0 auto; }
