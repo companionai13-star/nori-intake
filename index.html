@@ -248,6 +248,67 @@
     .catch-card__icon { font-size: 22px; margin-bottom: 12px; }
     .catch-card__title { font-size: 15px; font-weight: 500; color: var(--bark); margin-bottom: 8px; }
     .catch-card__desc { font-size: 13px; font-weight: 300; color: var(--bark-light); line-height: 1.6; }
+/* ── SECTION 3: SOLUTION — CALLNORI ── */
+    .solution { background: var(--sage-pale); padding: 80px 24px; }
+    .solution-inner { max-width: 960px; margin: 0 auto; }
+    .solution h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 600; text-align: center; color: var(--bark);
+      margin-bottom: 16px; line-height: 1.25;
+    }
+    .solution h2 em { font-style: italic; color: var(--sage); }
+    .solution-intro {
+      font-size: 16px; font-weight: 300; color: var(--bark-light);
+      text-align: center; line-height: 1.7; max-width: 540px;
+      margin: 0 auto 56px;
+    }
+    .solution-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      margin-bottom: 48px;
+    }
+    @media(max-width:720px) { .solution-steps { grid-template-columns: 1fr; } }
+    .solution-step {
+      background: var(--warm-white); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px; text-align: center;
+    }
+    .solution-step__num {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--sage); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 600; margin: 0 auto 16px;
+    }
+    .solution-step__title { font-family: 'Lora', serif; font-size: 17px; font-weight: 600; color: var(--bark); margin-bottom: 10px; }
+    .solution-step__body { font-size: 13px; font-weight: 300; color: var(--bark-light); line-height: 1.7; }
+
+    /* SMS COMPARISON */
+    .sms-compare {
+      background: var(--warm-white); border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px; margin-bottom: 48px;
+    }
+    .sms-compare h3 {
+      font-family: 'Lora', serif; font-size: 20px; font-weight: 600;
+      color: var(--bark); margin-bottom: 8px; text-align: center;
+    }
+    .sms-compare-sub {
+      font-size: 13px; color: var(--text-muted); text-align: center;
+      margin-bottom: 28px; font-weight: 300;
+    }
+    .sms-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width:560px) { .sms-pair { grid-template-columns: 1fr; } }
+    .sms-bubble { background: var(--cream); border-radius: 12px; padding: 18px; }
+    .sms-bubble--nori { background: var(--sage-pale); border: 1.5px solid var(--sage-light); }
+    .sms-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; padding-bottom: 10px;
+      border-bottom: 1px solid var(--border); margin-bottom: 10px;
+    }
+    .sms-bubble--nori .sms-tag { color: var(--sage); }
+    .sms-bubble:not(.sms-bubble--nori) .sms-tag { color: var(--text-muted); }
+    .sms-time { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+    .sms-text { font-size: 13px; color: var(--bark); line-height: 1.6; font-weight: 300; }
+
+ 
 
     /* ── FORM ── */
     .form-section { padding: 64px 24px 80px; max-width: 640px; margin: 0 auto; }
