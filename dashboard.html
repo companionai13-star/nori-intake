@@ -597,9 +597,18 @@
                         'apikey': SUPABASE_ANON_KEY,
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ token }),
+                    body: JSON.stringify({ p_token: token }),
                 });
+const rawText = await response.text();
 
+console.log("RPC status:", response.status);
+console.log("RPC response:", rawText);
+
+if (!response.ok) {
+  throw new Error(`RPC failed ${response.status}: ${rawText}`);
+}
+
+const data = JSON.parse(rawText);
                 if (response.status === 401) {
                     // Token expired
                     showState('expired');
