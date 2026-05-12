@@ -638,7 +638,30 @@ const data = JSON.parse(rawText);
         if (Array.isArray(data)) {
           data = data[0] || {};
         }
+data.call_history = (data.sessions || []).map(s => ({
+  call_date: s.started_at,
+  duration_minutes: Math.round((s.duration_sec || 0) / 60),
+  mood_before: s.mood_score,
+  mood_after: s.mood_score,
+  summary: s.summary
+}));
 
+data.mood_trend = (data.sessions || [])
+  .slice()
+  .reverse()
+  .map(s => ({
+    date: s.started_at,
+    score: Number(s.mood_score)
+  }));
+
+data.current_concerns = (data.sessions || [])
+  .filter(s => s.concern && s.concern_detail)
+  .map(s => ({
+    title: s.concern_detail,
+    mention_count: 1,
+    last_mentioned: s.started_at,
+    status: s.concern_type || 'active'
+  }));
         // Safety defaults
         data.call_history = data.call_history || [];
         data.mood_trend = data.mood_trend || [];
