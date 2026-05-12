@@ -125,7 +125,27 @@
             color: var(--text-muted);
             font-size: 0.95rem;
         }
-
+        .filter-row {
+          display: flex;
+          gap: 0.75rem;
+          margin-top: 1rem;
+          flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+          border: 1px solid var(--border);
+          background: #fff;
+          color: var(--text-secondary);
+          border-radius: 999px;
+          padding: 0.5rem 0.9rem;
+          cursor: pointer;
+          font-weight: 600;
+        }
+        
+        .filter-btn.active {
+          background: var(--primary);
+          color: #fff;
+        }
         /* Grid Layout */
         .dashboard-grid {
             display: grid;
@@ -451,7 +471,12 @@
             <h1 class="page-title">Your Wellbeing Dashboard</h1>
             <p class="page-subtitle">Track your mood trends and supported conversations</p>
         </div>
-
+        <div class="filter-row">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="concerns">Concerns</button>
+          <button class="filter-btn" data-filter="alerts">Alerts</button>
+          <button class="filter-btn" data-filter="missed">Missed Calls</button>
+        </div>
         <!-- Expired Token Banner -->
         <div id="expiredBanner" style="display: none;">
             <div class="expired-banner">
@@ -522,6 +547,24 @@
                     </div>
                     <div class="card-icon">☎️</div>
                 </div>
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Alerts Sent</div>
+                    <div class="card-icon">🔔</div>
+                  </div>
+                  <div id="alertsList" class="item-list"></div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header">
+                    <div class="card-title">Missed Calls</div>
+                    <div class="card-icon">📵</div>
+                  </div>
+                    <div class="card" data-section="concerns">
+                        <div class="card" data-section="alerts">
+                            <div class="card" data-section="missed">
+                  <div id="missedCallsList" class="item-list"></div>
+                </div>
                 <div id="callsList" class="item-list">
                     <div class="loading">
                         <div class="spinner"></div>
@@ -570,7 +613,21 @@
             const params = new URLSearchParams(window.location.search);
             return params.get('token');
         }
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 
+    const filter = btn.dataset.filter;
+
+    document.querySelectorAll('[data-section]').forEach(section => {
+      section.style.display =
+        filter === 'all' || section.dataset.section === filter
+          ? 'block'
+          : 'none';
+    });
+  });
+});
         // Show different states
         function showState(state) {
             document.getElementById('loadingState').style.display = state === 'loading' ? 'block' : 'none';
@@ -654,6 +711,9 @@ data.mood_trend = (data.sessions || [])
     score: Number(s.mood_score)
   }));
 
+data.alert_history = data.alerts || [];
+data.missed_call_history = data.missed_calls || [];
+                
 data.current_concerns = (data.sessions || [])
   .filter(s => s.concern && s.concern_detail)
   .map(s => ({
@@ -677,6 +737,11 @@ data.current_concerns = (data.sessions || [])
 
         // Render dashboard with data
         function renderDashboard(data) {
+           const seniorName = data.senior?.name || 'Your loved one';
+
+document.querySelector('.page-title').textContent = `${seniorName}'s Wellbeing Dashboard`;
+document.querySelector('.page-subtitle').textContent =
+  `Mood trends, recent conversations, concerns, alerts, and missed calls for ${seniorName}.`;
             // Update stats
             document.getElementById('totalCalls').textContent = data.call_history?.length || 0;
             document.getElementById('avgMood').textContent = data.mood_trend && data.mood_trend.length > 0
@@ -692,6 +757,8 @@ data.current_concerns = (data.sessions || [])
 
             // Render call history
             renderCallHistory(data.call_history);
+            renderAlerts(data.alert_history);
+            renderMissedCalls(data.missed_call_history);
         }
 
         // Render mood trend chart
@@ -806,7 +873,7 @@ data.current_concerns = (data.sessions || [])
                 <div class="item">
                     <div class="item-content">
                         <div class="item-title">
-                            ${call.mood_before !== null ? `Mood: ${call.mood_before}/10 → ${call.mood_after}/10` : 'Conversation'}
+                            ${call.mood_before !== null ? `Mood: ${call.mood_before}/10` : 'Conversation'}
                         </div>
                         <div class="item-meta">
                             ${formatDate(call.call_date)} • Duration: ${call.duration_minutes} min
@@ -816,7 +883,46 @@ data.current_concerns = (data.sessions || [])
                 </div>
             `).join('');
         }
+function renderAlerts(alerts) {
+  const container = document.getElementById('alertsList');
 
+  if (!alerts || alerts.length === 0) {
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">🔔</div><p>No alerts sent.</p></div>';
+    return;
+  }
+
+  container.innerHTML = alerts.map(alert => `
+    <div class="item">
+      <div class="item-content">
+        <div class="item-title">${escapeHtml(alert.message || 'Alert')}</div>
+        <div class="item-meta">
+          ${formatDate(alert.sent_at)} • ${alert.severity || 'info'} • ${alert.acknowledged ? 'Acknowledged' : 'Not acknowledged'}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderMissedCalls(missedCalls) {
+  const container = document.getElementById('missedCallsList');
+
+  if (!missedCalls || missedCalls.length === 0) {
+    container.innerHTML = '<div class="empty-state"><div class="empty-icon">✅</div><p>No missed calls.</p></div>';
+    return;
+  }
+
+  container.innerHTML = missedCalls.map(call => `
+    <div class="item">
+      <div class="item-content">
+        <div class="item-title">${escapeHtml(call.miss_reason || 'Missed call')}</div>
+        <div class="item-meta">
+          ${formatDate(call.attempted_at)} • Attempt ${call.attempt_number || 1}
+          ${call.needs_retry ? ' • Retry needed' : ''}
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
         // Show error state
         function showErrorState(message) {
             document.getElementById('errorMessage').textContent = message;
