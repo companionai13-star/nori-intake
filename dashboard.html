@@ -600,8 +600,6 @@
     </footer>
 
     <script>
-        alert('Dashboard script started');
-        console.log('Dashboard script started');
         // Configuration
         const SUPABASE_URL = 'https://ofookspwnjgdyjzhujjf.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mb29rc3B3bmpnZHlqemh1ampmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4NzcwOTAsImV4cCI6MjA4OTQ1MzA5MH0.eUYrv6oNEGAhGkhmNBeFpF8K8e5nnKv50-uorf1SxSk';
@@ -657,16 +655,16 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
                     },
                     body: JSON.stringify({ p_token: token }),
                 });
-const rawText = await response.text();
-
-console.log("RPC status:", response.status);
-console.log("RPC response:", rawText);
-
-if (!response.ok) {
-  throw new Error(`RPC failed ${response.status}: ${rawText}`);
-}
-
-const data = JSON.parse(rawText);
+                const rawText = await response.text();
+                
+                console.log("RPC status:", response.status);
+                console.log("RPC response:", rawText);
+                
+                if (!response.ok) {
+                  throw new Error(`RPC failed ${response.status}: ${rawText}`);
+                }
+                
+                const data = JSON.parse(rawText);
                 if (response.status === 401) {
                     // Token expired
                     showState('expired');
@@ -680,47 +678,59 @@ const data = JSON.parse(rawText);
                 
                 
                 if (data.error) {
-                    if (data.error === 'Token expired') {
+                    console.log("Dashboard error:", data.error);
+
+                    if (
+                        data.error === 'Token expired' ||
+                        data.error === 'invalid_or_expired'
+                    ) {
+                
+                        document.querySelector('.expired-banner-title').textContent =
+                          '🔒 Access Link Expired';
+                
+                        document.querySelector('.expired-banner-text').textContent =
+                          'This dashboard link is invalid or has expired. Please request a new secure access link.';
+                
                         showState('expired');
                         return;
                     }
-                    throw new Error(data.error);
-                }
-        //let data = JSON.parse(rawText);
 
-        console.log("Dashboard data:", data);
+                    showErrorState(data.error);
+                    return;
+                }
+                       
 
         // Supabase RPC sometimes returns an array
         if (Array.isArray(data)) {
           data = data[0] || {};
         }
-data.call_history = (data.sessions || []).map(s => ({
-  call_date: s.started_at,
-  duration_minutes: Math.round((s.duration_sec || 0) / 60),
-  mood_before: s.mood_score,
-  mood_after: s.mood_score,
-  summary: s.summary
-}));
+        data.call_history = (data.sessions || []).map(s => ({
+          call_date: s.started_at,
+          duration_minutes: Math.round((s.duration_sec || 0) / 60),
+          mood_before: s.mood_score,
+          mood_after: s.mood_score,
+          summary: s.summary
+        }));
 
-data.mood_trend = (data.sessions || [])
-  .slice()
-  .reverse()
-  .map(s => ({
-    date: s.started_at,
-    score: Number(s.mood_score)
-  }));
-
-data.alert_history = data.alerts || [];
-data.missed_call_history = data.missed_calls || [];
-                
-data.current_concerns = (data.sessions || [])
-  .filter(s => s.concern && s.concern_detail)
-  .map(s => ({
-    title: s.concern_detail,
-    mention_count: 1,
-    last_mentioned: s.started_at,
-    status: s.concern_type || 'active'
-  }));
+        data.mood_trend = (data.sessions || [])
+          .slice()
+          .reverse()
+          .map(s => ({
+            date: s.started_at,
+            score: Number(s.mood_score)
+          }));
+        
+        data.alert_history = data.alerts || [];
+        data.missed_call_history = data.missed_calls || [];
+                        
+        data.current_concerns = (data.sessions || [])
+          .filter(s => s.concern && s.concern_detail)
+          .map(s => ({
+            title: s.concern_detail,
+            mention_count: 1,
+            last_mentioned: s.started_at,
+            status: s.concern_type || 'active'
+          }));
         // Safety defaults
         data.call_history = data.call_history || [];
         data.mood_trend = data.mood_trend || [];
@@ -738,9 +748,9 @@ data.current_concerns = (data.sessions || [])
         function renderDashboard(data) {
            const seniorName = data.senior?.name || 'Your loved one';
 
-document.querySelector('.page-title').textContent = `${seniorName}'s Wellbeing Dashboard`;
-document.querySelector('.page-subtitle').textContent =
-  `Mood trends, recent conversations, concerns, alerts, and missed calls for ${seniorName}.`;
+            document.querySelector('.page-title').textContent = `${seniorName}'s Wellbeing Dashboard`;
+            document.querySelector('.page-subtitle').textContent =
+            `Mood trends, recent conversations, concerns, alerts, and missed calls for ${seniorName}.`;
             // Update stats
             document.getElementById('totalCalls').textContent = data.call_history?.length || 0;
             document.getElementById('avgMood').textContent = data.mood_trend && data.mood_trend.length > 0
