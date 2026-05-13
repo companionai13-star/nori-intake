@@ -959,7 +959,7 @@ function renderMissedCalls(missedCalls) {
             if (!token) return;
 
             try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/request_new_link`, {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/request_magic_link`, {
                     method: 'POST',
                     headers: {
                         'apikey': SUPABASE_ANON_KEY,
