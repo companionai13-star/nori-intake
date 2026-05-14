@@ -187,7 +187,42 @@
         .card-icon {
             font-size: 1.5rem;
         }
-
+        .range-controls {
+          display: flex;
+          gap: 1rem;
+          margin-top: 1rem;
+          flex-wrap: wrap;
+          align-items: center;
+        }
+        
+        .tab-row {
+          display: flex;
+          gap: 0.5rem;
+        }
+        
+        .range-tab {
+          border: 1px solid var(--border);
+          background: #fff;
+          color: var(--text-secondary);
+          border-radius: 999px;
+          padding: 0.5rem 1rem;
+          cursor: pointer;
+          font-weight: 600;
+        }
+        
+        .range-tab.active {
+          background: var(--primary);
+          color: #fff;
+        }
+        
+        .range-select {
+          border: 1px solid var(--border);
+          background: #fff;
+          color: var(--text-secondary);
+          border-radius: 999px;
+          padding: 0.55rem 1rem;
+          font-weight: 600;
+        }
         /* Stats Row */
         .stats-row {
             display: grid;
@@ -451,7 +486,15 @@
             <h1 class="page-title">Your Wellbeing Dashboard</h1>
             <p class="page-subtitle">Track your mood trends and supported conversations</p>
         </div>
-
+        <div class="range-controls">
+          <div class="tab-row">
+            <button class="range-tab active" data-view="weekly">Weekly</button>
+            <button class="range-tab" data-view="monthly">Monthly</button>
+            <button class="range-tab" data-view="yearly">Yearly</button>
+          </div>
+        
+          <select id="dateRangeSelect" class="range-select"></select>
+        </div>
         <!-- Expired Token Banner -->
         <div id="expiredBanner" style="display: none;">
             <div class="expired-banner">
@@ -625,7 +668,8 @@
                         'apikey': SUPABASE_ANON_KEY,
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ p_token: token }),
+                   body: JSON.stringify({ p_token: token }),
+                    
                 });
                 const rawText = await response.text();
                 
