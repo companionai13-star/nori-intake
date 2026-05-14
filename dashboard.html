@@ -486,6 +486,10 @@
             <h1 class="page-title">Your Wellbeing Dashboard</h1>
             <p class="page-subtitle">Track your mood trends and supported conversations</p>
         </div>
+        <button class="range-tab active" data-view="weekly">Weekly</button>
+        <button class="range-tab" data-view="monthly">Monthly</button>
+        <button class="range-tab" data-view="yearly">Yearly</button>
+        <select id="dateRangeSelect" class="range-select"></select>
         <div class="range-controls">
           <div class="tab-row">
             <button class="range-tab active" data-view="weekly">Weekly</button>
@@ -632,7 +636,94 @@
         let currentView = 'weekly';
         let currentStartDate = null;
         let currentEndDate = null;
+        document.querySelectorAll('.range-tab').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.range-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
         
+            currentView = btn.dataset.view;
+        
+            populateDateDropdown(currentView);
+            loadDashboard();
+          });
+        });
+        function populateDateDropdown(view) {
+          const select = document.getElementById('dateRangeSelect');
+          select.innerHTML = '';
+        
+          const today = new Date();
+        
+          if (view === 'weekly') {
+            for (let i = 1; i <= 12; i++) {
+              const currentMonday = getMonday(today);
+        
+              const start = new Date(currentMonday);
+              start.setDate(currentMonday.getDate() - i * 7);
+        
+              const end = new Date(start);
+              end.setDate(start.getDate() + 7);
+        
+              const option = document.createElement('option');
+              option.value = JSON.stringify({
+                start: toISODate(start),
+                end: toISODate(end)
+              });
+              option.textContent = `${formatShortDate(start)} - ${formatShortDate(new Date(end.getTime() - 86400000))}`;
+              select.appendChild(option);
+            }
+          }
+        
+          if (view === 'monthly') {
+            for (let i = 0; i < 12; i++) {
+              const start = new Date(today.getFullYear(), today.getMonth() - i, 1);
+              const end = new Date(start.getFullYear(), start.getMonth() + 1, 1);
+        
+              const option = document.createElement('option');
+              option.value = JSON.stringify({
+                start: toISODate(start),
+                end: toISODate(end)
+              });
+              option.textContent = start.toLocaleDateString('en-US', {
+                month: 'long',
+                year: 'numeric'
+              });
+              select.appendChild(option);
+            }
+          }
+        
+          if (view === 'yearly') {
+            const currentYear = today.getFullYear();
+        
+            for (let y = currentYear; y >= currentYear - 3; y--) {
+              const start = new Date(y, 0, 1);
+              const end = new Date(y + 1, 0, 1);
+        
+              const option = document.createElement('option');
+              option.value = JSON.stringify({
+                start: toISODate(start),
+                end: toISODate(end)
+              });
+              option.textContent = `${y}`;
+              select.appendChild(option);
+            }
+          }
+        
+          const selected = JSON.parse(select.value);
+          currentStartDate = selected.start;
+          currentEndDate = selected.end;
+        }
+        document.getElementById('dateRangeSelect').addEventListener('change', function () {
+          const selected = JSON.parse(this.value);
+          currentStartDate = selected.start;
+          currentEndDate = selected.end;
+          loadDashboard();
+        });
+        function formatShortDate(date) {
+          return date.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric'
+          });
+        }
         function toISODate(date) {
           return date.toISOString().split('T')[0];
         }
@@ -674,7 +765,7 @@
             document.getElementById('errorState').style.display = state === 'error' ? 'block' : 'none';
             document.getElementById('expiredBanner').style.display = state === 'expired' ? 'block' : 'none';
         }
-        setDefaultLastWeek();
+          populateDateDropdown('weekly');
         loadDashboard();
         // Fetch dashboard data
         async function loadDashboard() {
