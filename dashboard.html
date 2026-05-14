@@ -629,15 +629,44 @@
             return params.get('token');
         }
 
-
-  //  const filter = btn.dataset.filter;
-
-    document.querySelectorAll('[data-section]').forEach(section => {
-      section.style.display =
-        filter === 'all' || section.dataset.section === filter
-          ? 'block'
-          : 'none';
-        });
+        let currentView = 'weekly';
+        let currentStartDate = null;
+        let currentEndDate = null;
+        
+        function toISODate(date) {
+          return date.toISOString().split('T')[0];
+        }
+        
+        function getMonday(date) {
+          const d = new Date(date);
+          const day = d.getDay(); // Sun=0, Mon=1
+          const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+          d.setDate(diff);
+          d.setHours(0, 0, 0, 0);
+          return d;
+        }
+        
+        function setDefaultCurrentWeek() {
+          const monday = getMonday(new Date());
+          const nextMonday = new Date(monday);
+          nextMonday.setDate(monday.getDate() + 7);
+        
+          currentStartDate = toISODate(monday);
+          currentEndDate = toISODate(nextMonday);
+        }
+        function setDefaultLastWeek() {
+          const today = new Date();
+        
+          // current week's Monday
+          const currentMonday = getMonday(today);
+        
+          // previous Monday
+          const lastMonday = new Date(currentMonday);
+          lastMonday.setDate(currentMonday.getDate() - 7);
+        
+          currentStartDate = toISODate(lastMonday);
+          currentEndDate = toISODate(currentMonday);
+        }
         // Show different states
         function showState(state) {
             document.getElementById('loadingState').style.display = state === 'loading' ? 'block' : 'none';
@@ -645,7 +674,8 @@
             document.getElementById('errorState').style.display = state === 'error' ? 'block' : 'none';
             document.getElementById('expiredBanner').style.display = state === 'expired' ? 'block' : 'none';
         }
-
+        setDefaultLastWeek();
+        loadDashboard();
         // Fetch dashboard data
         async function loadDashboard() {
             const token = getTokenFromURL();
@@ -666,7 +696,12 @@
                         'apikey': SUPABASE_ANON_KEY,
                         'Content-Type': 'application/json',
                     },
-                   body: JSON.stringify({ p_token: token }),
+                   body: JSON.stringify({
+                                          p_token: token,
+                                          p_view: currentView,
+                                          p_start_date: startDate,
+                                          p_end_date: endDate
+                                        }),
                     
                 });
                 const rawText = await response.text();
@@ -678,7 +713,7 @@
                   throw new Error(`RPC failed ${response.status}: ${rawText}`);
                 }
                 
-                const data = JSON.parse(rawText);
+                let data = JSON.parse(rawText);
                 if (response.status === 401) {
                     // Token expired
                     showState('expired');
