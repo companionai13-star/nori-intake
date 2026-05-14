@@ -125,27 +125,7 @@
             color: var(--text-muted);
             font-size: 0.95rem;
         }
-        .filter-row {
-          display: flex;
-          gap: 0.75rem;
-          margin-top: 1rem;
-          flex-wrap: wrap;
-        }
-        
-        .filter-btn {
-          border: 1px solid var(--border);
-          background: #fff;
-          color: var(--text-secondary);
-          border-radius: 999px;
-          padding: 0.5rem 0.9rem;
-          cursor: pointer;
-          font-weight: 600;
-        }
-        
-        .filter-btn.active {
-          background: var(--primary);
-          color: #fff;
-        }
+
         /* Grid Layout */
         .dashboard-grid {
             display: grid;
@@ -471,12 +451,7 @@
             <h1 class="page-title">Your Wellbeing Dashboard</h1>
             <p class="page-subtitle">Track your mood trends and supported conversations</p>
         </div>
-        <div class="filter-row">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="concerns">Concerns</button>
-          <button class="filter-btn" data-filter="alerts">Alerts</button>
-          <button class="filter-btn" data-filter="missed">Missed Calls</button>
-        </div>
+
         <!-- Expired Token Banner -->
         <div id="expiredBanner" style="display: none;">
             <div class="expired-banner">
@@ -610,10 +585,7 @@
             const params = new URLSearchParams(window.location.search);
             return params.get('token');
         }
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+
 
     const filter = btn.dataset.filter;
 
