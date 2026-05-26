@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MP85HSKPT2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MP85HSKPT2');
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Participant Consent & Authorization — Nori</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf7f2;
+      --warm-white: #fffdf9;
+      --bark: #3d2e1e;
+      --bark-light: #6b5040;
+      --sage: #7a9e7e;
+      --sage-light: #a8c5ab;
+      --sage-pale: #edf4ee;
+      --terracotta: #c4704a;
+      --terracotta-light: #f0ddd3;
+      --border: #d4c9bc;
+      --text-muted: #9c8c7c;
+	   --brown:  #3d2e1e;
+      --green:  #7a9e7e;
+	  --text:   #2e2118;
+      --border: #d4c9bc;
+	  --muted:  #8a7a6a;
+	  --sand:   #e8e0d4;
+	  --accent: #c17f5a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh;line-height: 1.75; }
+
+    /* ── NAV ── */
+    .site-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,247,242,.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-brand img { height: 36px; width: auto; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { font-size: 14px; font-weight: 400; color: var(--text-muted); text-decoration: none; transition: color .2s; }
+    .nav-links a:hover { color: var(--sage); }
+    .nav-cta {
+      background: var(--bark); color: var(--cream) !important;
+      padding: 8px 20px; border-radius: 100px; font-weight: 500 !important;
+      transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--bark-light) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--bark);
+      color: var(--cream);
+      padding: 72px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(122,158,126,0.18) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(196,112,74,0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-logo {
+      font-family: 'Lora', serif; font-size: 15px; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--sage-light); margin-bottom: 48px; opacity: 0; animation: fadeUp .6s ease forwards;
+    }
+    .hero h1 {
+      font-family: 'Lora', serif; font-size: clamp(26px, 4.5vw, 46px); font-weight: 600;
+      line-height: 1.25; max-width: 700px; margin: 0 auto 24px;
+      opacity: 0; animation: fadeUp .6s ease .15s forwards;
+    }
+    .hero h1 em { font-style: italic; color: var(--sage-light); }
+    .hero-sub {
+      font-size: clamp(15px, 2.5vw, 18px); font-weight: 300; line-height: 1.7;
+      max-width: 520px; margin: 0 auto 48px; color: rgba(250,247,242,.75);
+      opacity: 0; animation: fadeUp .6s ease .3s forwards;
+    }
+    .hero-pills {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+      opacity: 0; animation: fadeUp .6s ease .45s forwards;
+    }
+    .pill {
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+      border-radius: 100px; padding: 8px 18px; font-size: 13px;
+      color: rgba(250,247,242,.8); display: flex; align-items: center; gap: 7px;
+    }
+    .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sage-light); flex-shrink: 0; }
+	
+	.page {
+      max-width: 720px;
+      margin: 48px auto 80px;
+      padding: 0 24px;
+    }
+	
+	.tag1 {
+      display: inline-block;
+      font-size: 11px; font-weight: 500; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--red);
+      border: 1px solid var(--green); border-radius: 20px;
+      padding: 4px 12px; margin-bottom: 16px;
+    }
+   
+   h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(24px, 4vw, 34px);
+      font-weight: 500; line-height: 1.25;
+      color: var(--brown); margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: var(--muted); font-size: 14.5px;
+      max-width: 560px; line-height: 1.65; margin-bottom: 40px;
+    }
+
+    .doc-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+    }
+
+    .doc-header {
+      background: var(--brown); color: #fff;
+      padding: 20px 32px;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 8px;
+    }
+    .doc-header-title { font-family: 'Lora', serif; font-size: 17px; font-weight: 500; }
+    .doc-version { font-size: 12px; opacity: 0.6; letter-spacing: 0.5px; }
+
+    .doc-body { padding: 36px; }
+
+    .section { margin-bottom: 32px; }
+    .section:last-child { margin-bottom: 0; }
+
+    h2 {
+      font-family: 'Lora', serif; font-size: 16px; font-weight: 600;
+      color: var(--brown); margin-bottom: 12px;
+      padding-bottom: 10px; border-bottom: 1px solid var(--sand);
+      display: flex; align-items: center; gap: 10px;
+    }
+    h2 .num {
+      width: 24px; height: 24px; background: var(--green);
+      color: #fff; border-radius: 50%; font-size: 11px;
+      font-family: 'DM Sans', sans-serif; font-weight: 500;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    p { margin-bottom: 12px; color: #4a3a2a; font-size: 14.5px; }
+    p:last-child { margin-bottom: 0; }
+
+    ul { padding-left: 20px; margin-bottom: 12px; color: #4a3a2a; }
+    li { margin-bottom: 7px; line-height: 1.65; font-size: 14.5px; }
+
+    .highlight {
+      background: var(--cream); border-left: 3px solid var(--green);
+      border-radius: 0 8px 8px 0; padding: 13px 18px;
+      margin: 14px 0; font-size: 13.5px; color: var(--muted);
+    }
+    .highlight strong { color: var(--brown); }
+
+    .warning {
+      background: #fdf4ee; border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0; padding: 13px 18px;
+      margin: 14px 0; font-size: 13.5px; color: #7a4a2a;
+    }
+
+    hr.divider { border: none; border-top: 1px solid var(--sand); margin: 32px 0; }
+
+    .effective {
+      margin-top: 36px; text-align: center;
+      font-size: 12.5px; color: var(--muted); line-height: 1.7;
+    }
+    .effective a { color: var(--green); text-decoration: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 32px 24px;
+      font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--sage); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="site-nav">
+<a href="index.html" class="nav-brand">
+    <img src="nori_Logo_500x500_px.png" alt=" " />
+    <span style="font-family:'Lora',serif;font-size:18px;font-weight:600;color:var(--bark);letter-spacing:-0.3px;"></span>
+</a>
+  <div class="nav-links">
+    <a href="#solution">How it works</a>
+    <a href="#enroll">Sign up</a>
+    <a href="https://callnori.com/blog/index.html" class="active">Journal</a>
+   <!-- <li><a href="https://callnori.com/about.html">About</a></li>-->
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+	<a href="consent.html">Consent</a>
+    <a href="#enroll" class="nav-cta">Get started →</a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="tag1">Legal Document</div>
+  <h1>Participant Consent<br>&amp; Authorization</h1>
+  <p class="subtitle">This document explains what you are agreeing to when you enroll a family member or loved one in Nori's daily calling service. Please read it before completing enrollment.</p>
+
+  <div class="doc-card">
+    <div class="doc-header">
+      <span class="doc-header-title">Nori — Participant Consent &amp; Authorization</span>
+      <span class="doc-version">Version 1.0 · Effective May 2026</span>
+    </div>
+
+    <div class="doc-body">
+
+      <div class="section">
+        <h2><span class="num">1</span> About This Document</h2>
+        <p>This Participant Consent &amp; Authorization ("Consent") is separate from Nori's Terms of Service and Privacy Policy. Those documents govern your relationship with Nori as a user. This Consent specifically covers the person you are enrolling to receive calls — referred to here as the "Participant."</p>
+        <p>By checking the consent checkbox during enrollment, you confirm that you have read, understood, and agreed to everything in this document on behalf of yourself and the Participant.</p>
+        <div class="highlight">
+          <strong>Note:</strong> Nori is not a medical service, emergency service, or licensed healthcare provider. Nothing in this Consent or Nori's service creates a clinical or therapeutic relationship.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">2</span> Your Authority to Enroll</h2>
+        <p>You may only enroll a Participant if at least one of the following is true:</p>
+        <ul>
+          <li>The Participant is aware they will receive daily AI-powered calls from Nori and has verbally agreed to receive them.</li>
+          <li>You hold legal guardianship, power of attorney, or documented healthcare proxy authority over the Participant.</li>
+          <li>You are a professional caregiver with written authorization from the Participant or their legal representative.</li>
+        </ul>
+        <div class="warning">
+          Enrolling someone without their knowledge or against their wishes violates these terms and may constitute unlawful surveillance in some jurisdictions. Nori will immediately terminate service if enrollment was made without proper authority.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">3</span> What the Participant Is Consenting To</h2>
+        <p>By completing enrollment, you confirm the Participant is aware of and agrees to the following:</p>
+        <ul>
+          <li><strong>Daily phone calls</strong> — Nori will call the Participant at their preferred time each day using an AI-powered voice.</li>
+          <li><strong>Call recording and analysis</strong> — every call is recorded and analyzed by AI to generate wellbeing summaries, detect mood patterns, and flag concerns.</li>
+          <li><strong>Speech pattern monitoring</strong> — Nori listens for changes in emotional tone, speech patterns, repetition, confusion, and other signals over time.</li>
+          <li><strong>Sharing summaries with you</strong> — daily call highlights, mood scores, detected concerns, and alerts are shared with the enrolling family member or caregiver.</li>
+          <li><strong>Secure data storage</strong> — call recordings and analysis data are stored securely for the duration of active enrollment.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">4</span> Call Recording</h2>
+        <p>Nori records conversations to generate your weekly summary and detect changes in your family member's wellbeing over time. Recordings are stored securely and never shared outside your family.</p>
+        <p>Nori provides a brief verbal notification on the <strong>first call only</strong> that conversations are recorded and shared with the enrolling family member. Your enrollment consent covers all subsequent calls — no repeated disclosure is made on daily calls.</p>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">5</span> Data, Privacy &amp; Health Information</h2>
+        <p>Nori collects and processes the following data as part of this service:</p>
+        <ul>
+          <li>The Participant's name, age, phone number, timezone, and any health notes you provide.</li>
+          <li>Audio recordings of all Nori-initiated calls with the Participant.</li>
+          <li>AI-generated analysis including emotional tone, mood scores, speech patterns, and flagged concerns.</li>
+          <li>Your contact details, relationship to the Participant, and alert preferences.</li>
+        </ul>
+        <p>This data is stored securely and is never sold to third parties. Full details are in our <a href="privacy.html" style="color:var(--green);">Privacy Policy</a>.</p>
+        <div class="highlight">
+          <strong>Health information:</strong> Nori is not currently a HIPAA-covered entity. If you choose to share medical information about the Participant (such as medications or diagnoses) during enrollment, you do so voluntarily. This information is used only to personalize conversations and is never shared or used for any other purpose.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">6</span> Limitations of Service</h2>
+        <p>By completing enrollment, you understand and accept the following limitations:</p>
+        <ul>
+          <li><strong>Nori is not an emergency service.</strong> If the Participant is in immediate danger, call 911. Nori cannot dispatch emergency services.</li>
+          <li>Nori cannot guarantee it will detect every health concern, behavioral change, or cognitive shift.</li>
+          <li>AI-generated summaries and alerts are informational only. They are not medical diagnoses, clinical assessments, or professional opinions.</li>
+          <li>Nori is not a substitute for professional medical, psychological, social, or emergency care.</li>
+          <li>Call quality and conversation depth depend on the Participant's willingness to engage, phone connection, and hearing ability.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2><span class="num">7</span> Cancellation</h2>
+        <p>Withdrawal of consent must be requested in writing by the enrolling family member or authorized representative by emailing <a href="mailto:hello@callnori.com" style="color:var(--green);">hello@callnori.com</a>. All calls will cease within 24 hours of receiving the request.</p>
+        <p>Upon cancellation, you may request deletion of the Participant's data by contacting us at the same email address.</p>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="section">
+        <h2><span class="num">8</span> What Checking the Box Means</h2>
+        <p>When you check <em>"I have read and agree to the Terms of Service, Privacy Policy, and Participant Consent &amp; Authorization"</em> during enrollment, you are confirming:</p>
+        <ul>
+          <li>You have read and understood this entire document.</li>
+          <li>You have the authority to enroll the Participant as described in Section 2.</li>
+          <li>The Participant is aware of and consents to receiving daily AI-powered calls from Nori.</li>
+          <li>The Participant understands and consents to call recording and AI analysis as described in Sections 3 and 4.</li>
+          <li>You understand the limitations stated in Section 6.</li>
+          <li>You agree to Nori's <a href="terms.html" style="color:var(--green);">Terms of Service</a> and <a href="privacy.html" style="color:var(--green);">Privacy Policy</a>.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+
+
+<!-- ── FOOTER ── -->
+<footer>
+  <img src="nori_Logo_500x500_px.png" alt=" " style="height:28px;margin-bottom:12px;display:block;margin-left:auto;margin-right:auto;" />
+  <div style="margin-bottom:8px;">
+    <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+    <a href="terms.html">Terms of Service</a> &nbsp;·&nbsp;
+	<a href="consent.html">Consent</a> &nbsp;·&nbsp;
+    <a href="mailto:hello@callnori.com">hello@callnori.com</a>
+  </div>
+  <div>© 2026 CallNori LLC &nbsp;·&nbsp; Operating as Nori &nbsp;·&nbsp; To stop SMS alerts reply STOP &nbsp;·&nbsp; For help reply HELP</div>
+</footer>
+
+</body>
+</html>
